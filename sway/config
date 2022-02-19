@@ -1,0 +1,166 @@
+# Set Command/Windows as mod Key
+set $mod Mod4
+
+# Include every file in ~/.config/sway/ that ends with .conf
+include *.conf
+
+# output "*" bg /datos/Imagenes/Oblivion/sun-yellow.png fill
+output "*" bg /datos/Imagenes/Wallpaper/40.jpg fill
+
+
+# Clipboard Manager
+exec copyq
+
+# Notification Daemon
+exec /usr/bin/dunst
+# System Bar
+exec waybar
+# Lock Screen (Tiemout Sec)
+exec_always swayidle timeout 3600 "lock"
+
+
+# Application Launcher
+# bindsym $mod+r exec wofi -b -p "Search" -t "alacritty" -i -S drun
+bindsym $mod+r exec rofi -show drun -run-shell-command '{terminal} -e bash -ic "{cmd} && read"'
+
+
+# System Manager
+bindsym Shift+ctrl+Escape exec "alacritty -e htop"
+
+# Terminal
+bindsym $mod+Return exec alacritty
+
+
+
+
+########## Sway Behaviour Shortcuts
+
+# restart Sway
+bindsym $mod+Shift+r exec swaymsg reload
+# exit Sway (Log out)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit ?' -B 'Yes, exit' 'i3-msg exit'"
+
+
+
+########## WINDOWS BEHAVIOUR
+
+# Don't change window focus when moving the mouse
+focus_follows_mouse no
+
+# Disable Focus Wrapping
+focus_wrapping no
+
+# Change focus to new apps
+focus_on_window_activation focus
+
+
+
+########## WINDOWS SHORTCUTS
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# Change focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move Containers
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+v split v
+
+# split in vertical orientation
+bindsym $mod+h split h
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+q focus parent
+
+# focus the child container
+bindsym $mod+a focus child
+
+
+
+########## WORKSPACES
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# Change between previous and next workspace
+bindsym $mod+Tab workspace back_and_forth
+bindsym Mod1+Tab workspace back_and_forth
+
+bindsym $mod+Shift+Tab move container to workspace back_and_forth
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+
+
+########## RESIZING WINDOWS
+
+mode "resize" {
+
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+
+        # Precise resizing with Shift
+
+        bindsym Shift+Left resize shrink width 3 px or 3 ppt
+        bindsym Shift+Down resize grow height 3 px or 3 ppt
+        bindsym Shift+Up resize shrink height 3 px or 3 ppt
+        bindsym Shift+Right resize grow width 3 px or 3 ppt
+
+        # back to normal:
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+Escape mode "default"
+        bindsym $mod+d mode "default"
+        bindsym $mod+Return mode "default"
+}
+
+bindsym $mod+d mode "resize"

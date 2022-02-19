@@ -1,0 +1,190 @@
+# Set Command/Windows as mod Key
+set $mod Mod4
+# To see what is the name of a key, you can use:
+# xev
+
+# Start nm-applet (system tray GUI for Netowrk Manager).
+exec_always --no-startup-id nm-applet
+
+# Set background as fast as possible (with feh)
+exec_always --no-startup-id feh --bg-scale "/datos/Imagenes/Oblivion/sun-yellow.png"
+# Include every file in ~/.config/i3/ that ends with .conf
+include *.conf
+
+
+
+########## "DESKTOP ENVIRONMENT APPS"
+
+# Start Dunst (Notification Daemon)
+exec --no-startup-id /usr/bin/dunst
+
+# Start rofi (Application Launcher)
+bindsym $mod+r exec --no-startup-id rofi -show drun -run-shell-command '{terminal} -e bash -ic "{cmd} && read"'
+
+# Start polybar (Taskbar)
+exec_always --no-startup-id ~/.config/polybar/launch.sh --forest
+
+
+# Start picom (Composition Manager) For transparency and Double-Buffering 
+exec_always --no-startup-id "picom &"
+
+# Start clearine (Log-off UI)
+bindsym $mod+x exec clearine
+
+# Start rofi (As a Windows selection tool) Mod1 = Alt
+# bindsym Mod1+Tab exec --no-startup-id rofi -show window
+
+# Start htop (System Manager)
+bindsym Shift+ctrl+Escape exec "alacritty -e htop"
+
+# Start alacritty (Terminal emulator)
+bindsym $mod+Return exec alacritty
+
+
+
+########## i3 Shortcuts
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+
+
+########## WINDOWS BEHAVIOUR
+
+# Don't change window focus when moving the mouse
+focus_follows_mouse no
+
+# Disable Focus Wrapping
+focus_wrapping no
+
+# Change focus to new apps
+focus_on_window_activation focus
+
+
+
+########## WINDOWS SHORTCUTS
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# Change focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move Containers
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+v split v
+
+# split in vertical orientation
+bindsym $mod+h split h
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+q focus parent
+
+# focus the child container
+bindsym $mod+a focus child
+
+
+
+########## WORKSPACES
+
+# Define names for default workspaces for which we configure key bindings later on.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# Change between previous and next workspace
+bindsym $mod+Tab workspace back_and_forth
+bindsym Mod1+Tab workspace back_and_forth
+
+bindsym $mod+Shift+Tab move container to workspace back_and_forth
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+
+
+########## RESIZING WINDOWS
+
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        bindsym Left resize shrink width 5 px or 5 ppt
+        bindsym Down resize grow height 5 px or 5 ppt
+        bindsym Up resize shrink height 5 px or 5 ppt
+        bindsym Right resize grow width 5 px or 5 ppt
+
+
+        # Precise resizing with Shift
+
+        bindsym Shift+Left resize shrink width 1 px or 1 ppt
+        bindsym Shift+Down resize grow height 1 px or 1 ppt
+        bindsym Shift+Up resize shrink height 1 px or 1 ppt
+        bindsym Shift+Right resize grow width 1 px or 1 ppt
+
+        # back to normal:
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+Escape mode "default"
+        bindsym $mod+d mode "default"
+        bindsym $mod+Return mode "default"
+}
+
+bindsym $mod+d mode "resize"

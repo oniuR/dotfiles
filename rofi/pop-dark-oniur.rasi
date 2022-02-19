@@ -1,0 +1,139 @@
+/**
+ * Author: Primetoxinz
+ */
+* {
+    text-color:                  #ebdbb2;
+    background-color:            #282828;
+    lightbg:                     #ebdbb2;
+    
+    black:                       #282828;
+    red:                         #FB4934;
+    green:                       #98971a;
+    yellow:                      #d79921;
+    blue:                        #458588;
+    magenta:                     #b16286;
+    cyan:                        #689d6a;
+    white:                       #a89984;
+
+    normal-foreground:           @foreground;
+    selected-urgent-foreground:  @foreground;
+    urgent-foreground:           @foreground;
+    alternate-urgent-background: @background;
+
+    bordercolor:                 @foreground;
+    normal-background:           @background;
+    separatorcolor:              @yellow;
+    spacing:                     2;
+    urgent-background:           @yellow;
+    alternate-urgent-foreground: @foreground;
+    selected-urgent-background:  @yellow;
+
+
+    alternate-normal-background: @background;
+    alternate-normal-foreground: @foreground;
+
+    selected-normal-foreground:  @black;
+    selected-normal-background:  @yellow;
+
+    selected-active-foreground:  @black;
+    selected-active-background:  @yellow;
+
+    alternate-active-foreground: @black;
+    alternate-active-background: @green;
+
+    active-foreground:           @black;
+    active-background:           @green;
+}
+window {
+    border:     0;
+    text-color: @foreground;
+    background-color: rgba ( 0, 0, 0, 0 % );
+    padding:    5;
+    text-color: @bordercolor;
+    background-color: @background;
+}
+mainbox {
+    border:  0;
+    padding: 0;
+}
+message {
+    border:     1px dash 0px 0px ;
+    text-color: @separatorcolor;
+    padding:    2px 0px 0px ;
+}
+textbox {
+    text-color: @foreground;
+}
+listview {
+    fixed-height: 0;
+    border:       2px 0px 0px ;
+    padding:      2px 0px 0px ;
+    text-color: @separatorcolor;
+}
+element {
+    border: 0;
+}
+element-text {
+    background-color: inherit;
+    text-color:       inherit;
+}
+element.normal.normal {
+    text-color: @normal-foreground;
+    background-color: @normal-background;
+}
+element.normal.urgent {
+    text-color: @urgent-foreground;
+    background-color: @urgent-background;
+}
+element.normal.active {
+    text-color: @active-foreground;
+    background-color: @active-background;
+}
+element.selected.normal {
+    text-color: @selected-normal-foreground;
+    background-color: @selected-normal-background;
+}
+element.selected.urgent {
+    text-color: @selected-urgent-foreground;
+    background-color: @selected-urgent-background;
+}
+element.selected.active {
+    text-color: @selected-active-foreground;
+    background-color: @selected-active-background;
+}
+element.alternate.normal {
+    text-color: @alternate-normal-foreground;
+    background-color: @alternate-normal-background;
+}
+element.alternate.urgent {
+    text-color: @alternate-urgent-foreground;
+    background-color: @alternate-urgent-background;
+}
+element.alternate.active {
+    text-color: @alternate-active-foreground;
+    background-color: @alternate-active-background;
+}
+mode-switcher {
+    border: 1px dash 0px 0px ;
+}
+button selected {
+    text-color: @selected-normal-foreground;
+    background-color: @selected-normal-background;
+}
+inputbar {
+    spacing: 0;
+    border: 0px ;
+}
+button normal {
+    text-color: @foreground;
+}
+
+inputbar {
+    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+}
+textbox-prompt-colon {
+    expand:     false;
+    str:        ":";
+    margin:     0px 0.3em 0em 0em ;
+    text-color: @normal-foreground;
+}
